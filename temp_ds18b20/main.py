@@ -13,9 +13,10 @@ def sens_id(barray):
     # generate 0--1007 sensor id hash; should be unique, and readable
     w = [_ for _ in barray]
     res = 1
+    modulo = 1007
     for _ in w:
-        res = (res * _) % 1007 + 37
-    return res
+        res = (res * _) % modulo + 37
+    return res % modulo
 
 
 async def temp_update():
@@ -37,25 +38,10 @@ async def temp_update():
         await asyncio.sleep(5)
 
 
-async def ticks():
-    while True:
-        await asyncio.sleep(10)
-        print('.')
-
-
-async def basic_task():
-    print('starting performance task')
-    await asyncio.sleep(1)
-    print('ending performance task')
-
-
 async def main(delay):
     print('Test runs for 20s.')
-    # asyncio.create_task(temp_update())  # just a task
     asyncio.run(temp_update())  # run until complete
-    # asyncio.run(ticks())
     await asyncio.sleep(delay)
-    # program finish; return to prompt
 
 
 asyncio.run(main(20))
