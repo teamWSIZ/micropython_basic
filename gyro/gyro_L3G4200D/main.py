@@ -29,7 +29,7 @@ async def update_rotation():
     ADDR = 0x69  # from i2c.scan() = ; good for L3G4200D
 
     # 0x6F = 0b01101111
-    # DR = 01 (200 Hz ODR); BW = 10 (50 Hz bandwidth); PD = 1 (normal mode)
+    # DR = 01 (200 Hz ODR); BW = 10 (50 Hz bandwidth); PD = 1 (parallel_component mode)
     # Zen = Yen = Xen = 1 (all axes enabled)
     i2c.writeto_mem(ADDR, REG1, bytes([0b01101111]))  # 01 10 1 111
 
