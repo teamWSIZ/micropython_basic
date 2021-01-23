@@ -13,7 +13,6 @@ async def update_pressure():
     epoch = 0
 
     while True:
-        # print('temp=', bmp.temperature)
         baro = bmp.pressure
         last10.append(baro)
         if len(last10) > 10:
@@ -27,7 +26,6 @@ async def update_pressure():
 
 
 async def main():
-    # asyncio.create_task(temp_update())  # just a task
     asyncio.run(update_pressure())  # run until complete
 
 
